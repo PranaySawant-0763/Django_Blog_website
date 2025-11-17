@@ -1,0 +1,15 @@
+{% extends 'blogapp/base.html' %}
+{% block title %}Login - My Blog{% endblock %}
+{% block content %}
+<div class="col-md-6 mx-auto">
+  <div class="card p-4 shadow-sm">
+    <h3 class="fw-bold text-center mb-3">Welcome Back!</h3>
+    <form method="post">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <button class="btn btn-primary w-100 mt-3">Login</button>
+    </form>
+    <p class="text-center mt-3">New here? <a href="{% url 'register' %}">Create an account</a></p>
+  </div>
+</div>
+{% endblock %}

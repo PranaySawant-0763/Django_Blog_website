@@ -1,0 +1,25 @@
+{% extends 'blogapp/base.html' %}
+{% block title %}Home - My Blog{% endblock %}
+{% block content %}
+<h2 class="mb-4 fw-bold text-center">Latest Blog Posts</h2>
+
+<div class="row">
+  {% for post in posts %}
+  <div class="col-md-6 col-lg-4 mb-4">
+    <div class="card h-100">
+      <div class="card-body">
+        <h5 class="card-title">
+          <a href="{% url 'view_post' post.id %}" class="text-decoration-none text-dark fw-bold">{{ post.title }}</a>
+        </h5>
+        <p class="text-muted mb-1">By <b>{{ post.author.username }}</b></p>
+        <p class="text-muted" style="font-size: 0.9rem;">{{ post.created_at|date:"d M Y" }}</p>
+        <p class="card-text">{{ post.content|truncatechars:100 }}</p>
+        <a href="{% url 'view_post' post.id %}" class="btn btn-outline-primary btn-sm">Read More →</a>
+      </div>
+    </div>
+  </div>
+  {% empty %}
+  <p class="text-center text-muted">No posts yet. Be the first to write one!</p>
+  {% endfor %}
+</div>
+{% endblock %}
